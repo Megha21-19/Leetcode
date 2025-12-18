@@ -1,9 +1,9 @@
 name: LeetCode Sync
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: '0 0 * * *'
-  workflow_dispatch:
 
 jobs:
   sync:
@@ -11,8 +11,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Sync LeetCode submissions
+      - name: Sync LeetCode
         uses: joshcai/leetcode-sync@v1.7
         with:
-          leetcode_username: ${{ secrets.LEETCODE_USERNAME }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          leetcode-session: ${{ secrets.LEETCODE_SESSION }}
+          leetcode-csrf-token: ${{ secrets.LEETCODE_CSRF_TOKEN }}
